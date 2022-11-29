@@ -35,9 +35,9 @@ u[:,end,n+1] = u[:,end-1,n] + ((CFL-1)/(CFL+1))*(u[:,end-1,n+1]-u[:,end,n])
 for n = 1:M  # Take M total time steps
     chance = rand(1:1000)
     if chance == 1 || n == 10
-        power = rand(10:50)
+        power = rand(10:50)/-10
         location = (rand(3:N-1),rand(3:N-1))
-        u[location[1],location[2],n] = rand(10:50)/10
+        u[location[1],location[2],n] = power
     end
     for i = 2:N
         for j = 2:N
@@ -71,6 +71,6 @@ for n = 1:10:M+1
     # p = plot3d(x, y, u[:, :, n], clims = (0, 1))
 
     # For a surface plot, uncomment below c=my_cg
-    q = surface(x, y, u[:, :, n], zlims = (-5,5),clims = (-5,5), c=my_cg, colorbar=false)
+    q = surface(x, y, u[:, :, n], zlims = (-5,5),clims = (-5,5),c=my_cg,colorbar=false)
     display(q)
 end
